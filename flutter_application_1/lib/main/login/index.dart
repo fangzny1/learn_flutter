@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/api/home.dart';
 import 'package:flutter_application_1/compontents/home/HMHot.dart';
 import 'package:flutter_application_1/compontents/home/HmCategory.dart';
 import 'package:flutter_application_1/compontents/home/HmMoreList.dart';
@@ -14,20 +15,21 @@ class LoginMainpage extends StatefulWidget {
   State<LoginMainpage> createState() => _LoginMainpageState();
 }
 
+//写乱了应该是home的这个ww
 class _LoginMainpageState extends State<LoginMainpage> {
-  final List<BannerItem> _Bannerlist = [
-    BannerItem(
-      id: "1",
-      imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/1.jpg",
-    ),
-    BannerItem(
-      id: "2",
-      imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/2.png",
-    ),
-    BannerItem(
-      id: "3",
-      imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/3.jpg",
-    ),
+  List<BannerItem> _Bannerlist = [
+    // BannerItem(
+    //   id: "1",
+    //   imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/1.jpg",
+    // ),
+    // BannerItem(
+    //   id: "2",
+    //   imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/2.png",
+    // ),
+    // BannerItem(
+    //   id: "3",
+    //   imgUrl: "https://yjy-teach-oss.oss-cn-beijing.aliyuncs.com/meituan/3.jpg",
+    // ),
   ];
 
   List<Widget> _getScrollChildren() {
@@ -54,6 +56,17 @@ class _LoginMainpageState extends State<LoginMainpage> {
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       Hmmorelist(),
     ];
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getBannerList();
+  }
+
+  void _getBannerList() async {
+    _Bannerlist = await getBanerListAPI();
+    setState(() {});
   }
 
   @override
